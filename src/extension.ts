@@ -1,12 +1,5 @@
 import * as vscode from "vscode";
 
-interface Variable {
-  [key: string]: {
-    value: string;
-    hidden: boolean;
-  };
-}
-
 let decorationTypes: { [key: string]: vscode.TextEditorDecorationType } = {};
 
 function getTextKey(
@@ -33,35 +26,28 @@ function getDecorationRange(
   return new vscode.Range(startPosition, endPosition);
 }
 
-function toggleVariableDecoration(
+async function toggleVariableDecoration(
   editor: vscode.TextEditor,
   context: vscode.ExtensionContext,
   textKey: string,
   lineText: string,
   decoration: vscode.DecorationOptions
 ) {
-  const hiddenVariables = context.globalState.get<Variable>(
-    "hiddenVariables",
-    {}
-  );
+  const secretStorage = context.secrets;
+  const hiddenVariable = await secretStorage.get(textKey);
 
-  if (!hiddenVariables[textKey] || !hiddenVariables[textKey].hidden) {
-    context.globalState.update("hiddenVariables", {
-      ...hiddenVariables,
-      [textKey]: { value: lineText, hidden: true },
-    });
-
+  if (!hiddenVariable) {
+    await secretStorage.store(
+      textKey,
+      JSON.stringify({ value: lineText, hidden: true })
+    );
     const decorationType = vscode.window.createTextEditorDecorationType({
       textDecoration: "none; filter: blur(5px);",
     });
     decorationTypes[textKey] = decorationType;
     editor.setDecorations(decorationType, [decoration]);
   } else {
-    context.globalState.update("hiddenVariables", {
-      ...hiddenVariables,
-      [textKey]: { value: lineText, hidden: false },
-    });
-
+    await secretStorage.delete(textKey);
     const decorationType = decorationTypes[textKey];
     if (decorationType) {
       decorationType.dispose();
@@ -70,16 +56,13 @@ function toggleVariableDecoration(
   }
 }
 
-function handleTextDocumentChange(
+async function handleTextDocumentChange(
   event: vscode.TextDocumentChangeEvent,
   context: vscode.ExtensionContext
 ) {
   const editor = vscode.window.activeTextEditor;
   if (editor && event.document === editor.document) {
-    const hiddenVariables = context.globalState.get<Variable>(
-      "hiddenVariables",
-      {}
-    );
+    const secretStorage = context.secrets;
 
     for (const change of event.contentChanges) {
       const line = editor.document.lineAt(change.range.start.line);
@@ -98,13 +81,13 @@ function handleTextDocumentChange(
         line.firstNonWhitespaceCharacterIndex
       );
 
-      if (hiddenVariables[textKey] && hiddenVariables[textKey].hidden) {
+      const hiddenVariable = await secretStorage.get(textKey);
+      if (hiddenVariable) {
         const decoration = { range: getDecorationRange(line, equalSignIndex) };
         const decorationType = decorationTypes[textKey];
         if (decorationType) {
           decorationType.dispose();
         }
-
         const newDecorationType = vscode.window.createTextEditorDecorationType({
           textDecoration: "none; filter: blur(5px);",
         });
@@ -115,14 +98,11 @@ function handleTextDocumentChange(
   }
 }
 
-function restoreHiddenVariables(
+async function restoreHiddenVariables(
   context: vscode.ExtensionContext,
   document: vscode.TextDocument
 ) {
-  const hiddenVariables = context.globalState.get<Variable>(
-    "hiddenVariables",
-    {}
-  );
+  const secretStorage = context.secrets;
   const editor = vscode.window.visibleTextEditors.find(
     (e) => e.document === document
   );
@@ -145,7 +125,8 @@ function restoreHiddenVariables(
         line.firstNonWhitespaceCharacterIndex
       );
 
-      if (hiddenVariables[textKey] && hiddenVariables[textKey].hidden) {
+      const hiddenVariable = await secretStorage.get(textKey);
+      if (hiddenVariable) {
         const decoration = { range: getDecorationRange(line, equalSignIndex) };
 
         const decorationType = vscode.window.createTextEditorDecorationType({

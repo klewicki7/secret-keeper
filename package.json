@@ -11,6 +11,9 @@
   "engines": {
     "vscode": "^1.94.0"
   },
+  "capabilities": {
+    "secret": {}
+  },
   "categories": [
     "Other"
   ],
