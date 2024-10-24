@@ -27,6 +27,4 @@
 
 ## Ejemplo
 
-```markdown
 ![Ejemplo de Secret Value en acción](/src/resources/images/example.png)
-```

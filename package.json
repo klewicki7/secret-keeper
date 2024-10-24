@@ -3,7 +3,7 @@
   "displayName": "Secret Value",
   "description": "Oculta tus variables sensibles de los chismosos",
   "publisher": "SecretKeeper",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/klewicki7/secret-keeper.git"
