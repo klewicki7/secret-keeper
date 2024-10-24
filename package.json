@@ -1,0 +1,77 @@
+{
+  "name": "secret-keeper-vscode",
+  "displayName": "Secret Keeper",
+  "description": "Oculta tus variables sensibles de los chismosos",
+  "publisher": "SecretKeeper",
+  "version": "0.0.4",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "icon": "./icon.png",
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "secret-keeper-vscode.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "secret-keeper-vscode.toggleVariable",
+        "title": "Hide Variables"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "secret-keeper-vscode.toggleVariable",
+          "when": "editorTextFocus && !editorReadonly",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "secret-keeper-vscode.toggleVariable",
+        "key": "shift+alt+h",
+        "when": "editorTextFocus && !editorReadonly"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "20.x",
+    "@types/uuid": "^10.0.0",
+    "@types/vscode": "^1.94.0",
+    "@typescript-eslint/eslint-plugin": "^8.10.0",
+    "@typescript-eslint/parser": "^8.7.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.13.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "crypto-js": "^4.2.0",
+    "uuid": "^10.0.0"
+  }
+}
