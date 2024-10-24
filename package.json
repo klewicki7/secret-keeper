@@ -1,15 +1,18 @@
 {
   "name": "secret-keeper-vscode",
-  "displayName": "Secret Keeper",
+  "displayName": "Secret Value",
   "description": "Oculta tus variables sensibles de los chismosos",
   "publisher": "SecretKeeper",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/klewicki7/secret-keeper.git"
   },
   "engines": {
     "vscode": "^1.94.0"
+  },
+  "capabilities": {
+    "secret": {}
   },
   "categories": [
     "Other"
@@ -22,12 +25,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "secret-keeper-vscode.helloWorld",
-        "title": "Hello World"
-      },
-      {
         "command": "secret-keeper-vscode.toggleVariable",
-        "title": "Hide Variables"
+        "title": "Toggle Variable"
       }
     ],
     "menus": {

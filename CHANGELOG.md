@@ -1,9 +1,6 @@
-# Change Log
+## [1.0.0] - 2024-10-24
 
-All notable changes to the "secret-keeper-vscode" extension will be documented in this file.
+### MVP
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- Funcionalidad inicial para ocultar y revelar variables sensibles.
+- Atajo de teclado `shift + alt + h` para ocultar y revelar variables.
