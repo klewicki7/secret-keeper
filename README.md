@@ -1,10 +1,10 @@
-# Secret Keeper
+# Secret Value
 
-¡Hola, jóvenes programadores! Les presento mi primera extensión de VS Code, **Secret Keeper**, dedicada a [midudev](https://www.twitch.tv/midudev), quien siempre tiene que lidiar en vivo con las API keys, tokens, y otros datos sensibles.
+¡Hola, jóvenes programadores! Les presento mi primera extensión de VS Code, **Secret Value**, dedicada a [midudev](https://www.twitch.tv/midudev), quien siempre tiene que lidiar en vivo con las API keys, tokens, y otros datos sensibles.
 
-## ¿Qué es Secret Keeper?
+## ¿Qué es Secret Value?
 
-**Secret Keeper** es una extensión de VS Code diseñada para ayudarte a ocultar y revelar variables sensibles en tu código. Ideal para streamers de programación y desarrolladores que manejan datos confidenciales en vivo.
+**Secret Value** es una extensión de VS Code diseñada para ayudarte a ocultar y revelar variables sensibles en tu código. Ideal para streamers de programación y desarrolladores que manejan datos confidenciales en vivo.
 
 ## Características
 
@@ -16,7 +16,7 @@
 
 1. Abre VS Code.
 2. Ve a la extensión del Marketplace.
-3. Busca "Secret Keeper".
+3. Busca "Secret Value".
 4. Haz clic en "Instalar".
 
 ## Uso
@@ -28,5 +28,5 @@
 ## Ejemplo
 
 ```markdown
-![Ejemplo de Secret Keeper en acción](/src/resources/images/example.png)
+![Ejemplo de Secret Value en acción](/src/resources/images/example.png)
 ```
