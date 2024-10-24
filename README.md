@@ -8,8 +8,8 @@
 
 ## Características
 
-- **Ocultar Variables Sensibles**: Selecciona la línea que contiene la variable que quieres ocultar y presiona `shift + alt + h` para ocultarla.
-- **Revelar Variables Ocultas**: Para mostrar la variable de nuevo, simplemente repite el mismo proceso (`shift + alt + h`).
+- **Ocultar Variables Sensibles**: Selecciona la línea que contiene la variable que quieres ocultar y presiona `shift + alt + h` (Windows/Linux) o `shift + option + h` (Mac) para ocultarla.
+- **Revelar Variables Ocultas**: Para mostrar la variable de nuevo, simplemente repite el mismo proceso (`shift + alt + h` en Windows/Linux o `shift + option + h` en Mac).
 - **Almacenamiento Seguro**: Las variables ocultas se almacenan de manera segura en el almacenamiento global de VS Code.
 
 ## Instalación
@@ -22,8 +22,8 @@
 ## Uso
 
 1. Selecciona la línea que contiene la variable que deseas ocultar.
-2. Presiona `shift + alt + h` para ocultarla.
-3. Para revelar la variable, repite el mismo proceso (`shift + alt + h`).
+2. Presiona `shift + alt + h` (Windows/Linux) o `shift + option + h` (Mac) para ocultarla.
+3. Para revelar la variable, repite el mismo proceso (`shift + alt + h` en Windows/Linux o `shift + option + h` en Mac).
 
 ## Ejemplo
 

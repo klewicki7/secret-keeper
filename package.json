@@ -25,12 +25,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "secret-keeper-vscode.helloWorld",
-        "title": "Hello World"
-      },
-      {
         "command": "secret-keeper-vscode.toggleVariable",
-        "title": "Hide Variables"
+        "title": "Toggle Variable"
       }
     ],
     "menus": {
